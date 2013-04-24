@@ -1,0 +1,10 @@
+1.首先在github网络端建一个repository，假设名字叫aa。
+2.在本地建立一个名为aa的文件夹，执行如下命令。
+3.#git init
+  #git remote add aa git@github.com:yujiajia/aa.git(远程映射到网络端的repository)
+  #git pull git@github.com:yujiajia/aa.git(将本地分支与网络端合并)
+  #git remote -v（查看远程映射）
+  #touch a.txt（建立一个文件）
+  #git add a.txt
+  #git commit -m 'a.txt'
+  #git push aa master(将a.txt文件提交到网络端)
