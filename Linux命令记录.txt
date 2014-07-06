@@ -1,0 +1,26 @@
+gdb调试：
+gdb filename(可执行文件)
+file filename
+break filename : linenum(或break filename : functionname)
+step(单步调试，进入函数内部)
+next(单步调试，不进入函数内部)
+continue(跳到下一个断点)
+info breakpoints(打印断点信息)
+run(运行)
+list(查看当前行以后的源代码)
+quit(退出gdb)
+shell(切换到shell模式，输入“exit”返回gdb模式)
+
+find -type f -name "*.cpp" | xargs grep "xxx"(从.cpp文件中查找含有”xxx“字样的地方)
+find -depth -name "xxx"(递归查找名为”xxx“的文件)
+history >>(导出命令记录)
+
+程序down掉，收集core信息:
+$ulimit -c unlimited
+$gdb ./filename(可执行文件)
+$core -file core
+$bt
+
+查看进程并强行杀掉进程：
+$ps a
+$kill -9 pid
