@@ -1,6 +1,6 @@
 gdb调试：
-gdb filename(可执行文件)
-file filename
+gdb 
+file filename(可执行文件)
 break filename : linenum(或break filename : functionname)
 step(单步调试，进入函数内部)
 next(单步调试，不进入函数内部)
