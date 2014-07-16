@@ -12,3 +12,11 @@
   #git add bb.txt
   #git commit -m '提交内容描述'
   #git push justgo(本地分支) master(远程分支)
+5.更改某文件名称后提交（假设由bb.txt->cc.txt）
+  #cp bb.txt cc.txt
+  #git rm bb.txt
+  #git commit -m 'rm bb.txt'
+  #git push justgo(本地分支) master(远程分支)
+  #提交cc.txt(详略)
+6.查看状态命令如下：
+  #git status
