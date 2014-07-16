@@ -1,5 +1,5 @@
 gdb调试：
-gdb 
+gdb //qt 程序的pro文件须加上CONFIG += qt debug 
 file filename(可执行文件)
 break filename : linenum(或break filename : functionname)
 step(单步调试，进入函数内部)
