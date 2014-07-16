@@ -8,3 +8,7 @@
   #git add a.txt
   #git commit -m 'a.txt'
   #git push aa master(将a.txt文件提交到网络端)
+4.修改某文件后提交（假设该文件名叫bb.txt）
+  #git add bb.txt
+  #git commit -m '提交内容描述'
+  #git push justgo(本地分支) master(远程分支)
