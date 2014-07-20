@@ -22,5 +22,7 @@ $core -file core
 $bt
 
 查看进程并强行杀掉进程：
-$ps a
+$ps -e | grep '关键字'
 $kill -9 pid
+如果知道进程名，如gnome-mplayer,则可用下面命令：
+$pgrep gnome-mplayer
