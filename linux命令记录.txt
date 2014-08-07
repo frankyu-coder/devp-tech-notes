@@ -29,3 +29,9 @@ $pgrep gnome-mplayer
 
 打开各种类型文件的命令:
 $xdg-open 文件名
+
+打开二进制文件:
+$vim -b
+
+显示十六进制内容：
+$:%!xxd
