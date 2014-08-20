@@ -35,3 +35,6 @@ $vim -b
 
 显示十六进制内容：
 $:%!xxd
+
+查看文件编码类型,先用vim打开,在命令行模式下输入：
+set fileencoding
