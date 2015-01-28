@@ -38,3 +38,7 @@ $:%!xxd
 
 查看文件编码类型,先用vim打开,在命令行模式下输入：
 set fileencoding
+
+用unrar命令解压文件：
+1.解压到同目录的一个文件夹，例如tmp文件夹；unrar e xx.rar tmp
+2.解压到当前目录；unrar x xx.rar
