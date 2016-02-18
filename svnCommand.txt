@@ -1,0 +1,41 @@
+/*
+* @date 2014.08.29
+* @author JackieY
+* @brief 
+* @warning
+**/
+
+// 将文件checkout到本地目录
+$svn checkout path(path为服务器路径)
+简写:svn co
+
+// 往版本中添加新的文件
+$svn add file
+例如 $svn add text.cpp
+
+// 将改动的文件添加到版本库
+$svn commit -m "LogMessagge" PATH
+例如 $svn commit -m "add test.cpp" test.cpp
+简写 svn ci
+
+// 更新到某个版本
+$svn update -r m path
+简写 $svn up
+
+// 查看文件或者目录状态
+$svn status path
+简写 $svn st
+
+// 查看日志
+$svn log path
+例如 $svn log test.cpp // 显示这个文件的所有修改记录，及其版本号的变化
+
+// 查看文件详细信息
+$svn info path
+
+// 比较差异
+$svn diff path
+$svn diff -r m:n path(对版本m和版本n进行比较差异)
+
+// 导出数据
+$svn export path // 导出一个版本的数据，脱离SVN版本控制
