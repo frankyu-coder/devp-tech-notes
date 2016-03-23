@@ -1,0 +1,183 @@
+linux 路由表功能解析
+ 
+       本文,简单描述一下路由的作用.简单来说,路由器就是一个公交站台,公交站台上面有很多路公交.每条线路公交车又有很多站台(路由器),你就会选择最近的一条公交出行方案,当然啦,
+
+站牌上面的路线是会经常更新,更新的事,有当地部门更新.这就是路由.一台电脑主机有路由表,路由器也有路由表,一般来说,一台主机电脑如果只有一个网卡的话,应该会有最少两条路由信息,
+
+一条是公网路由,一条是局域网路由(它是不会经过路由器的路由表的,因为它走的是链路层,所以可以解析我们在局域网内传数据,速度是很快的).
+ 
+测试环境:
+
+主机(linux):       ip:192.168.168.1.119     netmask:255.255.0.0
+
+另一台主机(xp):    ip:192.168.1.133   netmask:255.255.0.0
+ 
+网关:   ip:192.168.0.3  netmask: 255.255.248.0
+
+一. 我们可以查看一下路由表.(route 命令)
+[user:dvr_linux] route
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         192.168.0.3     0.0.0.0         UG    0      0        0 eth0                      //公网路由信息           //U – Up, G – Gateway, H – Host
+192.168.0.0     *               255.255.0.0     U     0      0        0 eth0                      //局域网路由信息.
+[user:dvr_linux] 
+Flags  可能出现的标志有：
+              U (route is up) 路由正常
+              H (target is a host) 主机路由
+              G (use gateway) 使用网关的间接路由
+              R (reinstate route for dynamic routing) 为动态选路恢复路由
+              D (dynamically installed by daemon or redirect) 该路由由选路进程或重定向动态创建
+              M (modified from routing daemon or rederict) 该路由已由选路进程或重定向修改
+              ! (reject route) 阻塞路由
+
+1.1 测试公网路由(切换到root用户下):
+[root:dvr_linux] route    //打印路由表
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         192.168.0.3     0.0.0.0         UG    0      0        0 eth0
+192.168.0.0     *               255.255.0.0     U     0      0        0 eth0
+[root:dvr_linux] ping 8.8.8.8           // 8.8.8.8是google公司的dns.
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_req=2 ttl=48 time=10.4 ms
+64 bytes from 8.8.8.8: icmp_req=3 ttl=48 time=10.0 ms     //正常
+^C
+--- 8.8.8.8 ping statistics ---
+3 packets transmitted, 2 received, 33% packet loss, time 2013ms
+rtt min/avg/max/mdev = 10.024/10.222/10.421/0.222 ms
+[root:dvr_linux] route del default dev eth0     //删除默认路由,也就公网路由,因为有网关.
+[root:dvr_linux] route
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+192.168.0.0     *               255.255.0.0     U     0      0        0 eth0
+[root:dvr_linux] ping 8.8.8.8
+connect: Network is unreachable          //ping 不通,没找到路由信息.数据包出不去.
+[root:dvr_linux] route add default dev eth0    //增加默认路由,没加网关.
+[root:dvr_linux] route
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         *               0.0.0.0         U     0      0        0 eth0
+192.168.0.0     *               255.255.0.0     U     0      0        0 eth0
+[root:dvr_linux] ping 8.8.8.8   
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+From 192.168.1.119 icmp_seq=1 Destination Host Unreachable         //ping 不通,找到路由信息.但是找不到去8.8.8.8胡线路,数据包出不去.
+From 192.168.1.119 icmp_seq=2 Destination Host Unreachable
+From 192.168.1.119 icmp_seq=3 Destination Host Unreachable
+^C
+--- 8.8.8.8 ping statistics ---
+5 packets transmitted, 0 received, +3 errors, 100% packet loss, time 4010ms
+pipe 3
+[root:dvr_linux] route del default dev eth0
+[root:dvr_linux] route
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+192.168.0.0     *               255.255.0.0     U     0      0        0 eth0
+[root:dvr_linux] route add default gw 192.168.0.3 dev eth0
+[root:dvr_linux] route
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         192.168.0.3     0.0.0.0         UG    0      0        0 eth0
+192.168.0.0     *               255.255.0.0     U     0      0        0 eth0
+[root:dvr_linux] ping 8.8.8.8
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_req=1 ttl=48 time=11.0 ms      //重新添加带网关的路由信息后,又能ping 通了.
+64 bytes from 8.8.8.8: icmp_req=3 ttl=48 time=10.0 ms
+64 bytes from 8.8.8.8: icmp_req=4 ttl=48 time=10.3 ms
+^C
+--- 8.8.8.8 ping statistics ---
+4 packets transmitted, 3 received, 25% packet loss, time 3015ms
+rtt min/avg/max/mdev = 10.037/10.496/11.071/0.445 ms
+[root:dvr_linux]
+
+1.2 测试局域网路由(切换到root用户下):
+[root:dvr_linux] route
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         192.168.0.3     0.0.0.0         UG    0      0        0 eth0
+192.168.0.0     *               255.255.0.0     U     0      0        0 eth0
+[root:dvr_linux] ping 192.168.1.133
+PING 192.168.1.133 (192.168.1.133) 56(84) bytes of data.
+64 bytes from 192.168.1.133: icmp_req=1 ttl=64 time=2.13 ms
+64 bytes from 192.168.1.133: icmp_req=2 ttl=64 time=0.450 ms   //正常通过.
+^C
+--- 192.168.1.133 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1003ms
+rtt min/avg/max/mdev = 0.450/1.290/2.131/0.841 ms
+[root:dvr_linux] route del -net 192.168.0.0/16 dev eth0              //删除局域网路由
+[root:dvr_linux] route
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         192.168.0.3     0.0.0.0         UG    0      0        0 eth0
+[root:dvr_linux] ping 192.168.1.133
+PING 192.168.1.133 (192.168.1.133) 56(84) bytes of data.
+64 bytes from 192.168.1.133: icmp_req=1 ttl=64 time=5.06 ms
+From 192.168.0.3: icmp_seq=1 Redirect Host(New nexthop: 192.168.1.133)     //数据包通过了默认路由信息发到了路由器,再查路由器的路由表找到了192.168.1.133的路由.再由网关发回来给192.168.1.133了.
+64 bytes from 192.168.1.133: icmp_req=2 ttl=64 time=0.477 ms
+64 bytes from 192.168.1.133: icmp_req=3 ttl=64 time=0.302 ms
+64 bytes from 192.168.1.133: icmp_req=4 ttl=64 time=0.285 ms
+64 bytes from 192.168.1.133: icmp_req=5 ttl=64 time=0.478 ms
+64 bytes from 192.168.1.133: icmp_req=6 ttl=64 time=0.408 ms
+^C
+--- 192.168.1.133 ping statistics ---
+6 packets transmitted, 6 received, 0% packet loss, time 5002ms
+rtt min/avg/max/mdev = 0.285/1.169/5.066/1.744 ms
+[root:dvr_linux] route
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         192.168.0.3     0.0.0.0         UG    0      0        0 eth0
+[root:dvr_linux] route del default  eth0                            //把默认路由都删掉的话,这就完全找不到路由信息了,也就是没网络了.
+[root:dvr_linux] route
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+[root:dvr_linux] ping 192.168.1.133
+connect: Network is unreachable
+[root:dvr_linux] 
+在这个时候,192.168.1.133的xp主机去ping 192.168.1.119的话.也就ping 不通的.
+C:\Documents and Settings\Administrator>ping 192.168.1.119 -t
+Pinging 192.168.1.119 with 32 bytes of data:
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+ 
+[root:dvr_linux] service networking restart            //重启一下网络.
+[warn] Running /etc/init.d/networking restart is deprecated because it may not re-enable some interfaces ... (warning).
+[....] Reconfiguring network interfaces...RTNETLINK answers: No such process
+done.
+[root:dvr_linux] 
+[root:dvr_linux] route
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         192.168.0.3     0.0.0.0         UG    0      0        0 eth0
+192.168.0.0     *               255.255.0.0     U     0      0        0 eth0
+[root:dvr_linux]
+ 
+在这个时候,192.168.1.133的xp主机去ping 192.168.1.119的话.网络恢复了.
+C:\Documents and Settings\Administrator>ping 192.168.1.119 -t
+Pinging 192.168.1.119 with 32 bytes of data:
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Reply from 192.168.1.119: bytes=32 time=2ms TTL=64
+Reply from 192.168.1.119: bytes=32 time<1ms TTL=64
+Reply from 192.168.1.119: bytes=32 time<1ms TTL=64
+Reply from 192.168.1.119: bytes=32 time<1ms TTL=64
+Reply from 192.168.1.119: bytes=32 time<1ms TTL=64
+Reply from 192.168.1.119: bytes=32 time<1ms TTL=64
+Reply from 192.168.1.119: bytes=32 time=6ms TTL=63
+Reply from 192.168.1.119: bytes=32 time<1ms TTL=64
+Reply from 192.168.1.119: bytes=32 time<1ms TTL=64
+Reply from 192.168.1.119: bytes=32 time<1ms TTL=64
