@@ -1,53 +1,53 @@
-ÔÚTCP²ã£¬ÓÐ¸öFLAGS×Ö¶Î£¬Õâ¸ö×Ö¶ÎÓÐÒÔÏÂ¼¸¸ö±êÊ¶£ºSYN, FIN, ACK, PSH, RST, URG.
+ï»¿åœ¨TCPå±‚ï¼Œæœ‰ä¸ªFLAGSå­—æ®µï¼Œè¿™ä¸ªå­—æ®µæœ‰ä»¥ä¸‹å‡ ä¸ªæ ‡è¯†ï¼šSYN, FIN, ACK, PSH, RST, URG.
 
-ÆäÖÐ£¬¶ÔÓÚÎÒÃÇÈÕ³£µÄ·ÖÎöÓÐÓÃµÄ¾ÍÊÇÇ°ÃæµÄÎå¸ö×Ö¶Î¡£
+å…¶ä¸­ï¼Œå¯¹äºŽæˆ‘ä»¬æ—¥å¸¸çš„åˆ†æžæœ‰ç”¨çš„å°±æ˜¯å‰é¢çš„äº”ä¸ªå­—æ®µã€‚
 
- ËüÃÇµÄº¬ÒåÊÇ£º
+ å®ƒä»¬çš„å«ä¹‰æ˜¯ï¼š
 
-SYN±íÊ¾½¨Á¢Á¬½Ó£¬
+SYNè¡¨ç¤ºå»ºç«‹è¿žæŽ¥ï¼Œ
 
-FIN±íÊ¾¹Ø±ÕÁ¬½Ó£¬
+FINè¡¨ç¤ºå…³é—­è¿žæŽ¥ï¼Œ
 
-ACK±íÊ¾ÏìÓ¦£¬
+ACKè¡¨ç¤ºå“åº”ï¼Œ
 
-PSH±íÊ¾ÓÐ DATAÊý¾Ý´«Êä£¬
+PSHè¡¨ç¤ºæœ‰ DATAæ•°æ®ä¼ è¾“ï¼Œ
 
-RST±íÊ¾Á¬½ÓÖØÖÃ¡£
+RSTè¡¨ç¤ºè¿žæŽ¥é‡ç½®ã€‚
 
- ÆäÖÐ£¬ACKÊÇ¿ÉÄÜÓëSYN£¬FINµÈÍ¬Ê±Ê¹ÓÃµÄ£¬±ÈÈçSYNºÍACK¿ÉÄÜÍ¬Ê±Îª1£¬Ëü±íÊ¾µÄ¾ÍÊÇ½¨Á¢Á¬½ÓÖ®ºóµÄÏìÓ¦£¬
+ å…¶ä¸­ï¼ŒACKæ˜¯å¯èƒ½ä¸ŽSYNï¼ŒFINç­‰åŒæ—¶ä½¿ç”¨çš„ï¼Œæ¯”å¦‚SYNå’ŒACKå¯èƒ½åŒæ—¶ä¸º1ï¼Œå®ƒè¡¨ç¤ºçš„å°±æ˜¯å»ºç«‹è¿žæŽ¥ä¹‹åŽçš„å“åº”ï¼Œ
 
- Èç¹ûÖ»ÊÇµ¥¸öµÄÒ»¸öSYN£¬Ëü±íÊ¾µÄÖ»ÊÇ½¨Á¢Á¬½Ó¡£
+ å¦‚æžœåªæ˜¯å•ä¸ªçš„ä¸€ä¸ªSYNï¼Œå®ƒè¡¨ç¤ºçš„åªæ˜¯å»ºç«‹è¿žæŽ¥ã€‚
 
-TCPµÄ¼¸´ÎÎÕÊÖ¾ÍÊÇÍ¨¹ýÕâÑùµÄACK±íÏÖ³öÀ´µÄ¡£
+TCPçš„å‡ æ¬¡æ¡æ‰‹å°±æ˜¯é€šè¿‡è¿™æ ·çš„ACKè¡¨çŽ°å‡ºæ¥çš„ã€‚
 
- µ«SYNÓëFINÊÇ²»»áÍ¬Ê±Îª1µÄ£¬ÒòÎªÇ°Õß±íÊ¾µÄÊÇ½¨Á¢Á¬½Ó£¬¶øºóÕß±íÊ¾µÄÊÇ¶Ï¿ªÁ¬½Ó¡£
+ ä½†SYNä¸ŽFINæ˜¯ä¸ä¼šåŒæ—¶ä¸º1çš„ï¼Œå› ä¸ºå‰è€…è¡¨ç¤ºçš„æ˜¯å»ºç«‹è¿žæŽ¥ï¼Œè€ŒåŽè€…è¡¨ç¤ºçš„æ˜¯æ–­å¼€è¿žæŽ¥ã€‚
 
-RSTÒ»°ãÊÇÔÚFINÖ®ºó²Å»á³öÏÖÎª1µÄÇé¿ö£¬±íÊ¾µÄÊÇÁ¬½ÓÖØÖÃ¡£
+RSTä¸€èˆ¬æ˜¯åœ¨FINä¹‹åŽæ‰ä¼šå‡ºçŽ°ä¸º1çš„æƒ…å†µï¼Œè¡¨ç¤ºçš„æ˜¯è¿žæŽ¥é‡ç½®ã€‚
 
- Ò»°ãµØ£¬µ±³öÏÖFIN°ü»òRST°üÊ±£¬ÎÒÃÇ±ãÈÏÎª¿Í»§¶ËÓë·þÎñÆ÷¶Ë¶Ï¿ªÁËÁ¬½Ó£»¶øµ±³öÏÖSYNºÍSYN£«ACK°üÊ±£¬ÎÒÃÇÈÏÎª¿Í»§¶ËÓë·þÎñÆ÷½¨Á¢ÁËÒ»¸öÁ¬½Ó¡£
+ ä¸€èˆ¬åœ°ï¼Œå½“å‡ºçŽ°FINåŒ…æˆ–RSTåŒ…æ—¶ï¼Œæˆ‘ä»¬ä¾¿è®¤ä¸ºå®¢æˆ·ç«¯ä¸ŽæœåŠ¡å™¨ç«¯æ–­å¼€äº†è¿žæŽ¥ï¼›è€Œå½“å‡ºçŽ°SYNå’ŒSYNï¼‹ACKåŒ…æ—¶ï¼Œæˆ‘ä»¬è®¤ä¸ºå®¢æˆ·ç«¯ä¸ŽæœåŠ¡å™¨å»ºç«‹äº†ä¸€ä¸ªè¿žæŽ¥ã€‚
 
-PSHÎª1µÄÇé¿ö£¬Ò»°ãÖ»³öÏÖÔÚ DATAÄÚÈÝ²»Îª0µÄ°üÖÐ£¬Ò²¾ÍÊÇËµPSHÎª1±íÊ¾µÄÊÇÓÐÕæÕýµÄTCPÊý¾Ý°üÄÚÈÝ±»´«µÝ¡£
+PSHä¸º1çš„æƒ…å†µï¼Œä¸€èˆ¬åªå‡ºçŽ°åœ¨ DATAå†…å®¹ä¸ä¸º0çš„åŒ…ä¸­ï¼Œä¹Ÿå°±æ˜¯è¯´PSHä¸º1è¡¨ç¤ºçš„æ˜¯æœ‰çœŸæ­£çš„TCPæ•°æ®åŒ…å†…å®¹è¢«ä¼ é€’ã€‚
 
-TCPµÄÁ¬½Ó½¨Á¢ºÍÁ¬½Ó¹Ø±Õ£¬¶¼ÊÇÍ¨¹ýÇëÇó£­ÏìÓ¦µÄÄ£Ê½Íê³ÉµÄ¡£
+TCPçš„è¿žæŽ¥å»ºç«‹å’Œè¿žæŽ¥å…³é—­ï¼Œéƒ½æ˜¯é€šè¿‡è¯·æ±‚ï¼å“åº”çš„æ¨¡å¼å®Œæˆçš„ã€‚
 
- ¸ÅÄî²¹³ä-TCPÈý´ÎÎÕÊÖ£º
+ æ¦‚å¿µè¡¥å……-TCPä¸‰æ¬¡æ¡æ‰‹ï¼š
 
-TCP(Transmission Control Protocol)´«Êä¿ØÖÆÐ­Òé
+TCP(Transmission Control Protocol)ä¼ è¾“æŽ§åˆ¶åè®®
 
-TCPÊÇÖ÷»ú¶ÔÖ÷»ú²ãµÄ´«Êä¿ØÖÆÐ­Òé£¬Ìá¹©¿É¿¿µÄÁ¬½Ó·þÎñ£¬²ÉÓÃÈý´ÎÎÕÊÖÈ·ÈÏ½¨Á¢Ò»¸öÁ¬½Ó£º
+TCPæ˜¯ä¸»æœºå¯¹ä¸»æœºå±‚çš„ä¼ è¾“æŽ§åˆ¶åè®®ï¼Œæä¾›å¯é çš„è¿žæŽ¥æœåŠ¡ï¼Œé‡‡ç”¨ä¸‰æ¬¡æ¡æ‰‹ç¡®è®¤å»ºç«‹ä¸€ä¸ªè¿žæŽ¥ï¼š
 
- Î»Âë¼´tcp±êÖ¾Î»£¬ÓÐ6ÖÖ±êÊ¾£ºSYN(synchronous½¨Á¢Áª»ú) ACK(acknowledgement È·ÈÏ) PSH(push´«ËÍ) FIN(finish½áÊø) RST(resetÖØÖÃ) URG(urgent½ô¼±)Sequence number(Ë³ÐòºÅÂë) Acknowledge number(È·ÈÏºÅÂë)
+ ä½ç å³tcpæ ‡å¿—ä½ï¼Œæœ‰6ç§æ ‡ç¤ºï¼šSYN(synchronouså»ºç«‹è”æœº) ACK(acknowledgement ç¡®è®¤) PSH(pushä¼ é€) FIN(finishç»“æŸ) RST(reseté‡ç½®) URG(urgentç´§æ€¥)Sequence number(é¡ºåºå·ç ) Acknowledge number(ç¡®è®¤å·ç )
 
-µÚÒ»´ÎÎÕÊÖ£ºÖ÷»úA·¢ËÍÎ»ÂëÎªsyn£½1£¬Ëæ»ú²úÉúseq number=1234567µÄÊý¾Ý°üµ½·þÎñÆ÷£¬Ö÷»úBÓÉSYN=1ÖªµÀ£¬AÒªÇó½¨Á¢Áª»ú£»
+ç¬¬ä¸€æ¬¡æ¡æ‰‹ï¼šä¸»æœºAå‘é€ä½ç ä¸ºsynï¼1ï¼Œéšæœºäº§ç”Ÿseq number=1234567çš„æ•°æ®åŒ…åˆ°æœåŠ¡å™¨ï¼Œä¸»æœºBç”±SYN=1çŸ¥é“ï¼ŒAè¦æ±‚å»ºç«‹è”æœºï¼›
 
- µÚ¶þ´ÎÎÕÊÖ£ºÖ÷»úBÊÕµ½ÇëÇóºóÒªÈ·ÈÏÁª»úÐÅÏ¢£¬ÏòA·¢ËÍack number=(Ö÷»úAµÄseq+1)£¬syn=1£¬ack=1£¬Ëæ»ú²úÉúseq=7654321µÄ°ü£»
+ ç¬¬äºŒæ¬¡æ¡æ‰‹ï¼šä¸»æœºBæ”¶åˆ°è¯·æ±‚åŽè¦ç¡®è®¤è”æœºä¿¡æ¯ï¼Œå‘Aå‘é€ack number=(ä¸»æœºAçš„seq+1)ï¼Œsyn=1ï¼Œack=1ï¼Œéšæœºäº§ç”Ÿseq=7654321çš„åŒ…ï¼›
 
- µÚÈý´ÎÎÕÊÖ£ºÖ÷»úAÊÕµ½ºó¼ì²éack numberÊÇ·ñÕýÈ·£¬¼´µÚÒ»´Î·¢ËÍµÄseq number+1£¬ÒÔ¼°Î»ÂëackÊÇ·ñÎª1£¬ÈôÕýÈ·£¬Ö÷»úA»áÔÙ·¢ËÍack number=(Ö÷»úBµÄseq+1)£¬ack=1£¬Ö÷»úBÊÕµ½ºóÈ·ÈÏseqÖµÓëack=1ÔòÁ¬½Ó½¨Á¢³É¹¦¡£
+ ç¬¬ä¸‰æ¬¡æ¡æ‰‹ï¼šä¸»æœºAæ”¶åˆ°åŽæ£€æŸ¥ack numberæ˜¯å¦æ­£ç¡®ï¼Œå³ç¬¬ä¸€æ¬¡å‘é€çš„seq number+1ï¼Œä»¥åŠä½ç ackæ˜¯å¦ä¸º1ï¼Œè‹¥æ­£ç¡®ï¼Œä¸»æœºAä¼šå†å‘é€ack number=(ä¸»æœºBçš„seq+1)ï¼Œack=1ï¼Œä¸»æœºBæ”¶åˆ°åŽç¡®è®¤seqå€¼ä¸Žack=1åˆ™è¿žæŽ¥å»ºç«‹æˆåŠŸã€‚
 
- Íê³ÉÈý´ÎÎÕÊÖ£¬Ö÷»úAÓëÖ÷»úB¿ªÊ¼´«ËÍÊý¾Ý¡£
+ å®Œæˆä¸‰æ¬¡æ¡æ‰‹ï¼Œä¸»æœºAä¸Žä¸»æœºBå¼€å§‹ä¼ é€æ•°æ®ã€‚
 
  
 
- ÔÚTCP/IPÐ­ÒéÖÐ£¬TCPÐ­ÒéÌá¹©¿É¿¿µÄÁ¬½Ó·þÎñ£¬²ÉÓÃÈý´ÎÎÕÊÖ½¨Á¢Ò»¸öÁ¬½Ó¡£  µÚÒ»´ÎÎÕÊÖ£º½¨Á¢Á¬½ÓÊ±£¬¿Í»§¶Ë·¢ËÍsyn°ü(syn=j)µ½·þÎñÆ÷£¬²¢½øÈëSYN_SEND×´Ì¬£¬µÈ´ý·þÎñÆ÷È·ÈÏ£»  µÚ¶þ´ÎÎÕÊÖ£º·þÎñÆ÷ÊÕµ½syn°ü£¬±ØÐëÈ·ÈÏ¿Í»§µÄSYN£¨ack=j+1£©£¬Í¬Ê±×Ô¼ºÒ²·¢ËÍÒ»¸öSYN°ü£¨syn=k£©£¬¼´SYN+ACK°ü£¬´ËÊ±·þÎñÆ÷½øÈëSYN_RECV×´Ì¬£»
+ åœ¨TCP/IPåè®®ä¸­ï¼ŒTCPåè®®æä¾›å¯é çš„è¿žæŽ¥æœåŠ¡ï¼Œé‡‡ç”¨ä¸‰æ¬¡æ¡æ‰‹å»ºç«‹ä¸€ä¸ªè¿žæŽ¥ã€‚  ç¬¬ä¸€æ¬¡æ¡æ‰‹ï¼šå»ºç«‹è¿žæŽ¥æ—¶ï¼Œå®¢æˆ·ç«¯å‘é€synåŒ…(syn=j)åˆ°æœåŠ¡å™¨ï¼Œå¹¶è¿›å…¥SYN_SENDçŠ¶æ€ï¼Œç­‰å¾…æœåŠ¡å™¨ç¡®è®¤ï¼›  ç¬¬äºŒæ¬¡æ¡æ‰‹ï¼šæœåŠ¡å™¨æ”¶åˆ°synåŒ…ï¼Œå¿…é¡»ç¡®è®¤å®¢æˆ·çš„SYNï¼ˆack=j+1ï¼‰ï¼ŒåŒæ—¶è‡ªå·±ä¹Ÿå‘é€ä¸€ä¸ªSYNåŒ…ï¼ˆsyn=kï¼‰ï¼Œå³SYN+ACKåŒ…ï¼Œæ­¤æ—¶æœåŠ¡å™¨è¿›å…¥SYN_RECVçŠ¶æ€ï¼›
 
- µÚÈý´ÎÎÕÊÖ£º¿Í»§¶ËÊÕµ½·þÎñÆ÷µÄSYN£«ACK°ü£¬Ïò·þÎñÆ÷·¢ËÍÈ·ÈÏ°üACK(ack=k+1)£¬´Ë°ü·¢ËÍÍê±Ï£¬¿Í»§¶ËºÍ·þÎñÆ÷½øÈëESTABLISHED×´Ì¬£¬Íê³ÉÈý´ÎÎÕÊÖ¡£Íê³ÉÈý´ÎÎÕÊÖ£¬¿Í»§¶ËÓë·þÎñÆ÷¿ªÊ¼´«ËÍÊý¾Ý. Õª×ÔÖÐ¹úÔÆ°²Íø(www.yunsec.net) Ô­ÎÄ£ºhttp://www.yunsec.net/a/school/wlcs/agreement/2012/0317/10262.html
+ ç¬¬ä¸‰æ¬¡æ¡æ‰‹ï¼šå®¢æˆ·ç«¯æ”¶åˆ°æœåŠ¡å™¨çš„SYNï¼‹ACKåŒ…ï¼Œå‘æœåŠ¡å™¨å‘é€ç¡®è®¤åŒ…ACK(ack=k+1)ï¼Œæ­¤åŒ…å‘é€å®Œæ¯•ï¼Œå®¢æˆ·ç«¯å’ŒæœåŠ¡å™¨è¿›å…¥ESTABLISHEDçŠ¶æ€ï¼Œå®Œæˆä¸‰æ¬¡æ¡æ‰‹ã€‚å®Œæˆä¸‰æ¬¡æ¡æ‰‹ï¼Œå®¢æˆ·ç«¯ä¸ŽæœåŠ¡å™¨å¼€å§‹ä¼ é€æ•°æ®. æ‘˜è‡ªä¸­å›½äº‘å®‰ç½‘(www.yunsec.net) åŽŸæ–‡ï¼šhttp://www.yunsec.net/a/school/wlcs/agreement/2012/0317/10262.html
