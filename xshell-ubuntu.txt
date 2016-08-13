@@ -1,4 +1,7 @@
+
 在Ubuntu下安装openssh-server:sudo apt-get install openssh-server
+
 检查SSH服务是否启动：ps -e | grep ssh
+
 如果存在sshd说明已启动，否则键入下列命令启动：/etc/init.d/ssh start
 
