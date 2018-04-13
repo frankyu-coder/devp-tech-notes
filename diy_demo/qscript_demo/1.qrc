@@ -1,6 +1,0 @@
-<RCC>
-    <qresource prefix="/" >
-        <file>1.js</file>
-        <file>1.ui</file>
-    </qresource>
-</RCC>
