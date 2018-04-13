@@ -52,7 +52,7 @@
 
 int main(int argc, char **argv)
 {
-    Q_INIT_RESOURCE(calculator);
+    Q_INIT_RESOURCE(demo);
 
     QApplication app(argc, argv);
 //! [0a]
@@ -67,7 +67,7 @@ int main(int argc, char **argv)
 #endif
 
 //! [0b]
-    QString scriptFileName(":/calculator.js");
+    QString scriptFileName(":/demo.js");
     QFile scriptFile(scriptFileName);
     scriptFile.open(QIODevice::ReadOnly);
     engine.evaluate(scriptFile.readAll(), scriptFileName);
@@ -76,20 +76,20 @@ int main(int argc, char **argv)
 
 //! [1]
     QUiLoader loader;
-    QFile uiFile(":/calculator.ui");
+    QFile uiFile(":/demo.ui");
     uiFile.open(QIODevice::ReadOnly);
     QWidget *ui = loader.load(&uiFile);
     uiFile.close();
 //! [1]
 
 //! [2]
-    QScriptValue ctor = engine.evaluate("Calculator");
+    QScriptValue ctor = engine.evaluate("Demo");
     QScriptValue scriptUi = engine.newQObject(ui, QScriptEngine::ScriptOwnership);
     QScriptValue calc = ctor.construct(QScriptValueList() << scriptUi);
 //! [2]
 
 #if !defined(QT_NO_SCRIPTTOOLS)
-    QLineEdit *display = ui->findChild<QLineEdit*>("display");
+    QLineEdit *display = ui->findChild<QLineEdit*>("ln_m");
     QObject::connect(display, SIGNAL(returnPressed()),
                      debugWindow, SLOT(show()));
 #endif
