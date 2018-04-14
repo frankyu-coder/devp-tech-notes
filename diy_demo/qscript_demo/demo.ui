@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1280</width>
-    <height>800</height>
+    <height>694</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,16 +19,12 @@
      <x>60</x>
      <y>80</y>
      <width>281</width>
-     <height>121</height>
+     <height>138</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <item row="1" column="0">
-     <widget class="QPushButton" name="pb_s">
-      <property name="text">
-       <string>备调</string>
-      </property>
-     </widget>
+    <item row="1" column="1">
+     <widget class="QLineEdit" name="ln_s"/>
     </item>
     <item row="0" column="0">
      <widget class="QPushButton" name="pb_m">
@@ -37,11 +33,35 @@
       </property>
      </widget>
     </item>
+    <item row="1" column="0">
+     <widget class="QPushButton" name="pb_s">
+      <property name="text">
+       <string>备调</string>
+      </property>
+     </widget>
+    </item>
     <item row="0" column="1">
      <widget class="QLineEdit" name="ln_m"/>
     </item>
-    <item row="1" column="1">
-     <widget class="QLineEdit" name="ln_s"/>
+    <item row="2" column="0">
+     <widget class="QPushButton" name="pb_tg">
+      <property name="text">
+       <string>调功</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QPushButton" name="pb_sv">
+      <property name="text">
+       <string>设值</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QLineEdit" name="ln_sv"/>
+    </item>
+    <item row="2" column="1">
+     <widget class="QLineEdit" name="ln_tg"/>
     </item>
    </layout>
   </widget>

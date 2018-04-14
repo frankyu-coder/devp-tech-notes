@@ -45,6 +45,8 @@
 #include <QFile>
 #include <QMainWindow>
 #include <QLineEdit>
+#include <QPushButton>
+#include <QDialog>
 
 #ifndef QT_NO_SCRIPTTOOLS
 #include <QScriptEngineDebugger>
@@ -58,6 +60,8 @@ int main(int argc, char **argv)
 //! [0a]
     QScriptEngine engine;
 //! [0a]
+
+    QDialog dlg;
 
 #if !defined(QT_NO_SCRIPTTOOLS)
     QScriptEngineDebugger debugger;
@@ -89,9 +93,12 @@ int main(int argc, char **argv)
 //! [2]
 
 #if !defined(QT_NO_SCRIPTTOOLS)
-    QLineEdit *display = ui->findChild<QLineEdit*>("ln_m");
-    QObject::connect(display, SIGNAL(returnPressed()),
+    QLineEdit *ln_m = ui->findChild<QLineEdit*>("ln_m");
+    QObject::connect(ln_m, SIGNAL(returnPressed()),
                      debugWindow, SLOT(show()));
+
+    QPushButton *pb_tg = ui->findChild<QPushButton*>("pb_tg");
+    QObject::connect(pb_tg, SIGNAL(clicked()), &dlg, SLOT(show()));
 #endif
 //! [3]
     ui->show();

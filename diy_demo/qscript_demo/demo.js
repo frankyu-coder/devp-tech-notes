@@ -25,7 +25,7 @@ function Demo(ui)
         gridLayoutWidget.ln_s.text = "0";
 
         gridLayoutWidget.pb_m.clicked.connect(this.showClicked.bind(this, 0));
-        gridLayoutWidget.pb_s.clicked.connect(this.showClicked.bind(this, 1));
+        gridLayoutWidget.pb_s.clicked.connect(this.showClicked2.bind(this, 1));
 
         //display.text = "0";
 /*
@@ -111,8 +111,25 @@ Demo.prototype.showClicked = function(digitValue)
         this.waitingForOperand = false;
     }
     */
+
     this.ui.gridLayoutWidget.ln_m.text += digitValue;
 }
+
+Demo.prototype.showClicked2 = function(digitValue)
+{
+    this.ui.gridLayoutWidget.ln_s.text += digitValue;
+}
+
+Demo.prototype.controlClick = function()
+{
+    //todo
+}
+
+Demo.prototype.setValueClick = function()
+{
+    //todo
+}
+
 //! [1]
 /*
 Calculator.prototype.unaryOperatorClicked = function(op)
